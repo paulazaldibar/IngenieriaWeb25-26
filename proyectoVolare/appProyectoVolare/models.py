@@ -23,6 +23,7 @@ class Pais(models.Model):
 class Aeropuerto(models.Model):
     id_aeropuerto = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
+    siglas = models.CharField(max_length=3)
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
     foto = models.ImageField(upload_to='fotos_aeropuertos/')
     aerolineas = models.ManyToManyField(Aerolinea)
