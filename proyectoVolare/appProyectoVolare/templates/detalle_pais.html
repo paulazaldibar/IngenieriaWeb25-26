@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}{{ pais.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>{{ pais.nombre }}</h2>
+  <p><strong>Código:</strong> {{ pais.codigo }}</p>
+  <p><strong>Continente:</strong> {{ pais.continente }}</p>
+  
+  <h4 class="mt-4">Aerolíneas del país:</h4>
+  <ul>
+    {% for aerolinea in pais.aerolinea_set.all %}
+      <li>
+        <a href="{% url 'detalle_aerolinea' aerolinea.id %}">{{ aerolinea.nombre }}</a>
+      </li>
+    {% empty %}
+      <p>No hay aerolíneas registradas en este país.</p>
+    {% endfor %}
+  </ul>
+
+  <h4 class="mt-4">Aeropuertos del país:</h4>
+  <ul>
+    {% for aeropuerto in pais.aeropuerto_set.all %}
+      <li>
+        <a href="{% url 'detalle_aeropuerto' aeropuerto.id %}">{{ aeropuerto.nombre }}</a>
+      </li>
+    {% empty %}
+      <p>No hay aeropuertos registrados en este país.</p>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'lista_paises' %}" class="btn btn-primary mt-3">Volver a Países</a>
+</div>
+{% endblock %}

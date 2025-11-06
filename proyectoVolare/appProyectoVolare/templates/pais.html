@@ -1,5 +1,42 @@
 {% extends "base.html" %}
+{% load static %}
+{% block title %}Países{% endblock %}
+
 {% block content %}
-<h2>Inicio</h2>
-<p>Bienvenido a AeroInfo. Consulta información sobre aerolíneas, aeropuertos y países.</p>
+<section class="container tm-home-section-1">
+  <div class="row">
+    <div class="tm-section-header">
+      <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
+      <div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">Países disponibles</h2></div>
+      <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>  
+    </div>
+  </div>
+
+  <div class="row">
+    {% for pais in paises %}
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="tm-tours-box-1">
+        <img src="{% static 'img/tours-06.jpg' %}" alt="pais" class="img-responsive">
+        <div class="tm-tours-box-1-info">
+          <div class="tm-tours-box-1-info-left">
+            <p class="text-uppercase margin-bottom-20">{{ pais.nombre }}</p>  
+            <p class="gray-text">Código: {{ pais.codigo }}</p>
+          </div>
+          <div class="tm-tours-box-1-info-right">
+            <p class="gray-text tours-1-description">{{ pais.descripcion|default:"Sin descripción disponible" }}</p>  
+          </div>              
+        </div>
+        <div class="tm-tours-box-1-link">
+          <div class="tm-tours-box-1-link-left">
+            Aeropuertos: {{ pais.aeropuerto_set.count }}
+          </div>
+          <a href="{% url 'detalle_pais' pais.id_pais %}" class="tm-tours-box-1-link-right">
+            Ver detalles
+          </a>              
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

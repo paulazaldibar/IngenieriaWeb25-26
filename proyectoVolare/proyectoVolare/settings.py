@@ -118,7 +118,7 @@ USE_TZ = True
 
 #STATIC_URL = 'static/'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "app" / "static"]
+STATICFILES_DIRS = [BASE_DIR / "appProyectoVolare" / "static"]
 
 
 # Default primary key field type
