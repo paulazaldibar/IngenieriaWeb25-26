@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Aerolinea, Pais, Aeropuerto
 
 # ---- PORTADA ----
+'''
 def index(request): # una aerolínea de cada país
     paises = Pais.objects.all()
     aerolineas_por_pais = []
@@ -14,6 +15,32 @@ def index(request): # una aerolínea de cada país
     })
 
     return render(request, 'index.html', {'paises_con_aerolineas': aerolineas_por_pais})
+'''
+
+# ---- INDEX / PORTADA ----
+def index(request):
+    paises = Pais.objects.all()
+    aerolineas_por_pais = []
+
+    for pais in paises:
+        # Aeropuertos del país
+        aeropuertos = pais.aeropuerto_set.all()
+
+        # Aerolíneas que operan en esos aeropuertos
+        aerolineas = Aerolinea.objects.filter(aeropuerto__in=aeropuertos).distinct()
+
+        # Escoger la primera aerolínea (o la más antigua si tenéis campo fundación)
+        aerolinea = aerolineas.order_by('id_aerolinea').first()
+
+        if aerolinea:
+            aerolineas_por_pais.append(aerolinea)
+
+    return render(request, 'index.html', {
+        'aerolineas_por_pais': aerolineas_por_pais
+    })
+
+
+
 
 # ---- AEROLÍNEAS ----
 def lista_aerolineas(request):

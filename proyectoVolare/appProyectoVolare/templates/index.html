@@ -1,10 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
+
+<!-- ✅ Enlazar CSS de index -->
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
 <section class="container text-center mt-5">
-  <h1>Bienvenido al portal de Aerolíneas y Aeropuertos</h1>
-  <p>Consulta información sobre aerolíneas, aeropuertos y países de todo el mundo.</p>
+  <h1 class="titulo-portada">Bienvenido a Volare</h1>
+  <p class="subtitulo-portada">Las mejores aerolíneas del mundo, agrupadas por país.</p>
 </section>
+
+<section class="container mt-5">
+  <h2 class="seccion-titulo">Una aerolínea por cada país</h2>
+
+  <div class="index-grid">
+    {% for aerolinea in aerolineas_por_pais %}
+      <div class="index-card">
+
+        {% if aerolinea.logo %}
+        <img src="{{ aerolinea.logo.url }}" 
+             alt="{{ aerolinea.nombre }}" 
+             class="index-image">
+        {% endif %}
+
+        <h3 class="index-nombre">{{ aerolinea.nombre }}</h3>
+        <p class="index-pais">{{ aerolinea.pais.nombre }}</p>
+
+        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}" class="index-btn">
+          Ver detalles
+        </a>
+
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
 {% endblock %}
