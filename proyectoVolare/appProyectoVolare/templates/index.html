@@ -4,38 +4,33 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-
-<!-- ✅ Enlazar CSS de index -->
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
 <section class="container text-center mt-5">
   <h1 class="titulo-portada">Bienvenido a Volare</h1>
-  <p class="subtitulo-portada">Las mejores aerolíneas del mundo, agrupadas por país.</p>
+  <p class="subtitulo-portada">Explora las principales aerolíneas del mundo, agrupadas por país.</p>
 </section>
 
 <section class="container mt-5">
-  <h2 class="seccion-titulo">Una aerolínea por cada país</h2>
+  <h2 class="seccion-titulo">Una aerolínea representativa por país</h2>
 
-  <div class="index-grid">
-    {% for aerolinea in aerolineas_por_pais %}
-      <div class="index-card">
-
-        {% if aerolinea.logo %}
-        <img src="{{ aerolinea.logo.url }}" 
-             alt="{{ aerolinea.nombre }}" 
-             class="index-image">
+  <div class="index-list">
+    {% for item in aerolineas_por_pais %}
+      <div class="index-row">
+        {% if item.aerolinea.logo %}
+          <div class="index-image-container">
+            <img src="{{ item.aerolinea.logo.url }}" alt="{{ item.aerolinea.nombre }}" class="index-image">
+          </div>
         {% endif %}
-
-        <h3 class="index-nombre">{{ aerolinea.nombre }}</h3>
-        <p class="index-pais">{{ aerolinea.pais.nombre }}</p>
-
-        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}" class="index-btn">
-          Ver detalles
-        </a>
-
+        <div class="index-info">
+          <h3 class="index-nombre">{{ item.aerolinea.nombre }}</h3>
+          <p class="index-pais"><strong>País:</strong> {{ item.pais.nombre }}</p>
+          <a href="{% url 'detalle_aerolinea' item.aerolinea.id_aerolinea %}" class="index-btn">Ver detalles</a>
+        </div>
       </div>
+    {% empty %}
+      <p class="text-center mt-5">No hay aerolíneas registradas.</p>
     {% endfor %}
   </div>
 </section>
-
 {% endblock %}

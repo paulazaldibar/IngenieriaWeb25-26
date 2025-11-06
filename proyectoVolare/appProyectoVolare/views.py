@@ -23,23 +23,15 @@ def index(request):
     aerolineas_por_pais = []
 
     for pais in paises:
-        # Aeropuertos del país
-        aeropuertos = pais.aeropuerto_set.all()
-
-        # Aerolíneas que operan en esos aeropuertos
-        aerolineas = Aerolinea.objects.filter(aeropuerto__in=aeropuertos).distinct()
-
-        # Escoger la primera aerolínea (o la más antigua si tenéis campo fundación)
-        aerolinea = aerolineas.order_by('id_aerolinea').first()
-
+        # Obtenemos la primera aerolínea registrada de ese país
+        aerolinea = Aerolinea.objects.filter(pais_origen=pais).first()
         if aerolinea:
-            aerolineas_por_pais.append(aerolinea)
+            aerolineas_por_pais.append({
+                'aerolinea': aerolinea,
+                'pais': pais
+            })
 
-    return render(request, 'index.html', {
-        'aerolineas_por_pais': aerolineas_por_pais
-    })
-
-
+    return render(request, 'index.html', {'aerolineas_por_pais': aerolineas_por_pais})
 
 
 # ---- AEROLÍNEAS ----
@@ -58,7 +50,9 @@ def lista_paises(request):
 
 def detalle_pais(request, pais_id):
     pais = get_object_or_404(Pais, pk=pais_id)
-    return render(request, 'detalle_pais.html', {'pais': pais})
+    aeropuertos = pais.aeropuerto_set.all()
+    aerolineas_operando = Aerolinea.objects.filter(aeropuerto__in=aeropuertos).distinct()
+    return render(request, 'detalle_pais.html', {'pais': pais, 'aeropuertos': aeropuertos, 'aerolineas_operando': aerolineas_operando,})
 
 # ---- AEROPUERTOS ----
 def lista_aeropuertos(request):

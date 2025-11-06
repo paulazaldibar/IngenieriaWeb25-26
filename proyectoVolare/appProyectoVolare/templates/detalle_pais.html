@@ -5,19 +5,20 @@
 <div class="container mt-5">
   <h2>{{ pais.nombre }}</h2>
   <img src="{{ pais.bandera.url }}" alt="bandera de {{ pais.nombre }}" class="img-fluid mb-3" style="max-width: 200px;">
-  <p><strong>Código:</strong> {{ pais.codigo }}</p>
-  <p><strong>Continente:</strong> {{ pais.continente }}</p>
   
-  <h4 class="mt-4">Aerolíneas del país:</h4>
+  <h4 class="mt-4">Aerolíneas que operan en este país:</h4>
   <ul>
-    {% for aerolinea in pais.aerolinea_set.all %}
+    {% for aerolinea in aerolineas_operando %}
       <li>
-        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">{{ aerolinea.nombre }}</a>
+        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">
+          {{ aerolinea.nombre }}
+         </a>
       </li>
     {% empty %}
-      <p>No hay aerolíneas registradas en este país.</p>
+      <p>No hay aerolíneas que operen en los aeropuertos de este país.</p>
     {% endfor %}
   </ul>
+
 
   <h4 class="mt-4">Aeropuertos del país:</h4>
   <ul>

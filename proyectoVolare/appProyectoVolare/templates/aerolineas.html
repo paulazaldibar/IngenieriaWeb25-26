@@ -35,9 +35,10 @@
         </div>
 
         <div class="airline-footer">
-          <span>País: {{ aerolinea.pais.nombre.count }}</span>
-          <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">Ver detalles</a>
+            <span>País: {{ aerolinea.pais_origen.nombre }}</span>
+            <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">Ver detalles</a>     
         </div>
+
       </div>
     {% endfor %}
   </div>
