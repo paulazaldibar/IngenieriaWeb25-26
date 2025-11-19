@@ -2,11 +2,11 @@
 {% load static %}
 {% block title %}Países{% endblock %}
 
-{% block content %}
-
-<!-- ✅ Enlazar CSS -->
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/paises.css' %}">
+{% endblock %}
 
+{% block content %}
 <section class="container tm-home-section-1">
 
   <div class="row">
