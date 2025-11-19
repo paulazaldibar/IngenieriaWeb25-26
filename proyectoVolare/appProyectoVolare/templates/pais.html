@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Países{% endblock %}
+
+{% block content %}
+
+<!-- ✅ Enlazar CSS -->
+<link rel="stylesheet" href="{% static 'css/paises.css' %}">
+
+<section class="container tm-home-section-1">
+
+  <div class="row">
+    <div class="tm-section-header">
+      <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h2 class="tm-section-title">Países disponibles</h2>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>  
+    </div>
+  </div>
+
+  <!-- ✅ Grid -->
+  <div class="country-grid">
+
+    {% for pais in paises %}
+      <div class="country-card">
+
+        <!-- Imagen corregida -->
+        {% if pais.bandera %}
+          <img src="{{ pais.bandera.url }}" 
+               alt="{{ pais.nombre }}" 
+               class="country-image">
+        {% else %}
+          <img src="{% static 'img/placeholder.png' %}"
+               alt="Sin imagen"
+               class="country-image">
+        {% endif %}
+
+        <!-- Info -->
+        <div class="country-info">
+          <p class="text-uppercase margin-bottom-20">{{ pais.nombre }}</p>
+        
+          <p class="country-description">
+            {{ pais.curiosidad|default:"Sin curiosidad disponible" }}
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="country-footer">
+          <span>Aeropuertos: {{ pais.aeropuerto_set.count }}</span>
+          <a href="{% url 'detalle_pais' pais.id_pais %}">Ver detalles</a>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+
+</section>
+{% endblock %}

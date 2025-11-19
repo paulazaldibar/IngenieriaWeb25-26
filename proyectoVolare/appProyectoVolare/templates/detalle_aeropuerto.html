@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ aeropuerto.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>{{ aeropuerto.nombre }}</h2>
+  <img src="{{ aeropuerto.foto.url }}" alt="{{ aeropuerto.nombre }}" class="img-fluid mb-3" style="max-width: 300px;">
+  <p><strong>País:</strong> {{ aeropuerto.pais.nombre }}</p>
+
+  <h4 class="mt-4">Aerolíneas que operan aquí:</h4>
+  <ul>
+    {% for aerolinea in aeropuerto.aerolineas.all %}
+      <li>
+        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">{{ aerolinea.nombre }}</a>
+      </li>
+    {% empty %}
+      <p>No hay aerolíneas registradas en este aeropuerto.</p>
+    {% endfor %}
+
+  </ul>
+
+  <a href="{% url 'lista_aeropuertos' %}" class="btn btn-primary mt-3">Volver a Aeropuertos</a>
+</div>
+{% endblock %}

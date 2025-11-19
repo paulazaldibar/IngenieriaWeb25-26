@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ pais.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>{{ pais.nombre }}</h2>
+  <img src="{{ pais.bandera.url }}" alt="bandera de {{ pais.nombre }}" class="img-fluid mb-3" style="max-width: 200px;">
+  
+  <h4 class="mt-4">Aerolíneas que operan en este país:</h4>
+  <ul>
+    {% for aerolinea in aerolineas_operando %}
+      <li>
+        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">
+          {{ aerolinea.nombre }}
+         </a>
+      </li>
+    {% empty %}
+      <p>No hay aerolíneas que operen en los aeropuertos de este país.</p>
+    {% endfor %}
+  </ul>
+
+
+  <h4 class="mt-4">Aeropuertos del país:</h4>
+  <ul>
+    {% for aeropuerto in pais.aeropuerto_set.all %}
+      <li>
+        <a href="{% url 'detalle_aeropuerto' aeropuerto.id_aeropuerto %}">{{ aeropuerto.nombre }}</a>
+      </li>
+    {% empty %}
+      <p>No hay aeropuertos registrados en este país.</p>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'lista_paises' %}" class="btn btn-primary mt-3">Volver a Países</a>
+</div>
+{% endblock %}

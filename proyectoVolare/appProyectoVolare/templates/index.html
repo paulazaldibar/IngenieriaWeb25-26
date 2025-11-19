@@ -1,15 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
 
 {% block content %}
-  <div class="container text-center mt-4">
-      <h1>Bienvenidos a Volare ✈️</h1>
-      <p>Descubre las mejores aerolíneas, aeropuertos y países a los que puedes volar.</p>
-      <hr>
-      <h3>Curiosidades sobre viajar</h3>
-      <ul>
-          <li>El aeropuerto más transitado del mundo es el de Atlanta (ATL).</li>
-          <li>La aerolínea más antigua en funcionamiento es KLM, fundada en 1919.</li>
-          <li>España es uno de los países más visitados del mundo por turismo aéreo.</li>
-      </ul>
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<section class="container text-center mt-5">
+  <h1 class="titulo-portada">Bienvenido a Volare</h1>
+  <p class="subtitulo-portada">Explora las principales aerolíneas del mundo, agrupadas por país.</p>
+</section>
+
+<section class="container mt-5">
+  <h2 class="seccion-titulo">Una aerolínea representativa por país</h2>
+
+  <div class="index-list">
+    {% for item in aerolineas_por_pais %}
+      <div class="index-row">
+        {% if item.aerolinea.logo %}
+          <div class="index-image-container">
+            <img src="{{ item.aerolinea.logo.url }}" alt="{{ item.aerolinea.nombre }}" class="index-image">
+          </div>
+        {% endif %}
+        <div class="index-info">
+          <h3 class="index-nombre">{{ item.aerolinea.nombre }}</h3>
+          <p class="index-pais"><strong>País:</strong> {{ item.pais.nombre }}</p>
+          <a href="{% url 'detalle_aerolinea' item.aerolinea.id_aerolinea %}" class="index-btn">Ver detalles</a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center mt-5">No hay aerolíneas registradas.</p>
+    {% endfor %}
   </div>
+</section>
 {% endblock %}

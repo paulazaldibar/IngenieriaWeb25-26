@@ -1,0 +1,48 @@
+/* IMAGEN CUADRADA */
+.airport-image {
+  width: 100%;
+  height: 180px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* GRID DE 3 POR FILA */
+.airport-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* TARJETA FLEXIBLE DE ALTURA IGUAL */
+.airport-card {
+  flex: 1 1 calc(33.333% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* INFORMACIÓN CENTRAL */
+.airport-info {
+  flex-grow: 1;
+}
+
+/* DESCRIPCIÓN */
+.airport-description {
+  margin-top: 10px;
+  color: #555;
+}
+
+/* FOOTER ALINEADO ABAJO */
+.airport-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  align-items: center;
+}
