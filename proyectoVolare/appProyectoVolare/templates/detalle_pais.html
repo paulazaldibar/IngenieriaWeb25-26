@@ -3,33 +3,52 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h2>{{ pais.nombre }}</h2>
-  <img src="{{ pais.bandera.url }}" alt="bandera de {{ pais.nombre }}" class="img-fluid mb-3" style="max-width: 200px;">
-  
-  <h4 class="mt-4">Aerolíneas que operan en este país:</h4>
-  <ul>
-    {% for aerolinea in aerolineas_operando %}
-      <li>
-        <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">
-          {{ aerolinea.nombre }}
-         </a>
-      </li>
-    {% empty %}
-      <p>No hay aerolíneas que operen en los aeropuertos de este país.</p>
-    {% endfor %}
-  </ul>
+  <h2 class="mb-4">{{ pais.nombre }}</h2>
 
+  <!-- GRID DE 3 COLUMNAS -->
+  <div class="row">
+    
+    <!-- COLUMNA 1: Bandera -->
+    <div class="col-md-4 mb-4 text-center">
+      <img src="{{ pais.bandera.url }}" 
+           alt="bandera de {{ pais.nombre }}" 
+           class="img-fluid mb-3"
+           style="max-width: 250px;">
+    </div>
 
-  <h4 class="mt-4">Aeropuertos del país:</h4>
-  <ul>
-    {% for aeropuerto in pais.aeropuerto_set.all %}
-      <li>
-        <a href="{% url 'detalle_aeropuerto' aeropuerto.id_aeropuerto %}">{{ aeropuerto.nombre }}</a>
-      </li>
-    {% empty %}
-      <p>No hay aeropuertos registrados en este país.</p>
-    {% endfor %}
-  </ul>
+    <!-- COLUMNA 2: Aerolíneas -->
+    <div class="col-md-4 mb-4">
+      <h4>Aerolíneas que operan en este país:</h4>
+      <ul class="list-group">
+        {% for aerolinea in aerolineas_operando %}
+          <li class="list-group-item">
+            <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">
+              {{ aerolinea.nombre }}
+            </a>
+          </li>
+        {% empty %}
+          <p>No hay aerolíneas que operen en los aeropuertos de este país.</p>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- COLUMNA 3: Aeropuertos -->
+    <div class="col-md-4 mb-4">
+      <h4>Aeropuertos del país:</h4>
+      <ul class="list-group">
+        {% for aeropuerto in pais.aeropuerto_set.all %}
+          <li class="list-group-item">
+            <a href="{% url 'detalle_aeropuerto' aeropuerto.id_aeropuerto %}">
+              {{ aeropuerto.nombre }}
+            </a>
+          </li>
+        {% empty %}
+          <p>No hay aeropuertos registrados en este país.</p>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
 
   <a href="{% url 'lista_paises' %}" class="btn btn-primary mt-3">Volver a Países</a>
 </div>
