@@ -1,16 +1,23 @@
 from django.urls import path
-from . import views
+from .views import (
+    IndexView,
+    AerolineaListView, AerolineaDetailView,
+    PaisListView, PaisDetailView,
+    AeropuertoListView, AeropuertoDetailView,
+    buscar_aeropuertos
+)
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    # Aerolíneas
-    path('aerolineas/', views.lista_aerolineas, name='lista_aerolineas'),
-    path('aerolineas/<int:aerolinea_id>/', views.detalle_aerolinea, name='detalle_aerolinea'),
-    # Países
-    path('paises/', views.lista_paises, name='lista_paises'),
-    path('paises/<int:pais_id>/', views.detalle_pais, name='detalle_pais'),
-    # Aeropuertos
-    path('aeropuertos/', views.lista_aeropuertos, name='lista_aeropuertos'),
-    path('aeropuertos/<int:aeropuerto_id>/', views.detalle_aeropuerto, name='detalle_aeropuerto'),
-    path('buscar-aeropuertos/', views.buscar_aeropuertos, name='buscar_aeropuertos'),
+    path('', IndexView.as_view(), name='index'),
+
+    path('aerolineas/', AerolineaListView.as_view(), name='lista_aerolineas'),
+    path('aerolineas/<int:aerolinea_id>/', AerolineaDetailView.as_view(), name='detalle_aerolinea'),
+
+    path('paises/', PaisListView.as_view(), name='lista_paises'),
+    path('paises/<int:pais_id>/', PaisDetailView.as_view(), name='detalle_pais'),
+
+    path('aeropuertos/', AeropuertoListView.as_view(), name='lista_aeropuertos'),
+    path('aeropuertos/<int:aeropuerto_id>/', AeropuertoDetailView.as_view(), name='detalle_aeropuerto'),
+
+    path('buscar_aeropuertos/', buscar_aeropuertos, name='buscar_aeropuertos'),
 ]
