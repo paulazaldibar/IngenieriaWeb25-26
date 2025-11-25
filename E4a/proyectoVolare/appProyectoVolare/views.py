@@ -4,6 +4,10 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.views.generic import FormView
+from django.urls import reverse_lazy
+from .forms import ContactoForm
+from django.views.generic import TemplateView
 
 from .models import Aerolinea, Pais, Aeropuerto
 
@@ -98,3 +102,20 @@ class AeropuertoDetailView(DetailView):
     template_name = 'detalle_aeropuerto.html'
     pk_url_kwarg = 'aeropuerto_id'
     context_object_name = 'aeropuerto'
+
+
+# -----------------------------
+# FORMULARIO
+# -----------------------------
+class ContactoView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactoForm
+    success_url = reverse_lazy('contacto_ok')
+
+    def form_valid(self, form):
+        form.save()     # Guarda el mensaje en la BD
+        return super().form_valid(form)
+    
+
+class ContactoOKView(TemplateView):
+    template_name = 'contact_ok.html'
