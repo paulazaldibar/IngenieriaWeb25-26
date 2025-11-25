@@ -19,48 +19,42 @@
     </div>
   </div>
 
-  <!-- GRID DE TARJETAS -->
-  <div class="airport-grid">
-    {% for aeropuerto in aeropuertos %}
+  <!-- BUSCADOR -->
+  <div class="row mt-4">
+    <div class="col-md-6 offset-md-3">
+      <input 
+        type="text" 
+        id="buscador-aeropuertos" 
+        class="form-control" 
+        placeholder="Buscar aeropuerto..."
+      >
+    </div>
+  </div>
 
-      <div class="airport-card">
-
-        <!-- Imagen correcta -->
-        
-        {% if aeropuerto.foto %}
-        <img src="{{ aeropuerto.foto.url }}" 
-          alt="{{ aeropuerto.nombre }}" 
-          class="airport-image">
-        {% else %}
-        <img src="{% static 'img/placeholder.png' %}" 
-          alt="Sin imagen" 
-          class="airport-image">
-        {% endif %}
-
-
-        <!-- Info -->
-        <div class="airport-info">
-          <p class="text-uppercase margin-bottom-20">{{ aeropuerto.nombre }}</p>
-          <p class="gray-text">Código IATA: {{ aeropuerto.siglas }}</p>
-
-          <p class="airport-description">
-            Ubicado en {{ aeropuerto.ciudad }} ({{ aeropuerto.pais.nombre }})
-          </p>
-        </div>
-
-        <!-- Footer -->
-        <div class="airport-footer">
-          <span>Aerolíneas: {{ aeropuerto.aerolineas.count }}</span>
-          <a href="{% url 'detalle_aeropuerto' aeropuerto.id_aeropuerto %}">
-            Ver detalles
-          </a>
-        </div>
-
-      </div>
-
-    {% endfor %}
+  <!-- CONTENEDOR DINÁMICO -->
+  <div id="contenedor-aeropuertos">
+    {% include "aeropuertos_items.html" with aeropuertos=aeropuertos %}
   </div>
 
 </section>
+
+<script>
+document.getElementById("buscador-aeropuertos").addEventListener("input", function () {
+    const texto = this.value;
+
+    fetch("{% url 'buscar_aeropuertos' %}?q=" + texto)
+        .then(response => response.json())
+        .then(data => {
+            const contenedor = document.getElementById("contenedor-aeropuertos");
+
+            // efecto de transición
+            contenedor.style.opacity = 0;
+            setTimeout(() => {
+                contenedor.innerHTML = data.html;
+                contenedor.style.opacity = 1;
+            }, 150);
+        });
+});
+</script>
 
 {% endblock %}

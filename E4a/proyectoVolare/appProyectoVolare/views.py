@@ -1,5 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Aerolinea, Pais, Aeropuerto
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def buscar_aeropuertos(request):
+    texto = request.GET.get("q", "")
+    aeropuertos = Aeropuerto.objects.filter(nombre__icontains=texto)
+    html = render_to_string("aeropuertos_items.html", {"aeropuertos": aeropuertos})
+    return JsonResponse({"html": html})
+
 
 # ---- PORTADA ----
 '''

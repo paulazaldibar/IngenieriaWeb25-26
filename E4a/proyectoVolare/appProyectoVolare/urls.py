@@ -12,4 +12,5 @@ urlpatterns = [
     # Aeropuertos
     path('aeropuertos/', views.lista_aeropuertos, name='lista_aeropuertos'),
     path('aeropuertos/<int:aeropuerto_id>/', views.detalle_aeropuerto, name='detalle_aeropuerto'),
+    path('buscar-aeropuertos/', views.buscar_aeropuertos, name='buscar_aeropuertos'),
 ]

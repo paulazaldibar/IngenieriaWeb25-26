@@ -1,0 +1,40 @@
+<!-- CLASE CREADA UNICAMENTE PARA SEPARAR CLASE AEROPUERTO CON ITEM DENTRO DE ELLA, 
+ ESTA CREADA UNICAMENTE PARA ITERACCION DE JAVA SCRIPT (BUSCADOR/EVENTO DE AEROPUERTOS)-->
+
+{% load static %}
+<div class="airport-grid">
+  {% for aeropuerto in aeropuertos %}
+
+    <div class="airport-card">
+
+      {% if aeropuerto.foto %}
+      <img src="{{ aeropuerto.foto.url }}" 
+           alt="{{ aeropuerto.nombre }}" 
+           class="airport-image">
+      {% else %}
+      <img src="{% static 'img/placeholder.png' %}" 
+           alt="Sin imagen" 
+           class="airport-image">
+      {% endif %}
+
+      <div class="airport-info">
+        <p class="text-uppercase margin-bottom-20">{{ aeropuerto.nombre }}</p>
+        <p class="gray-text">Código IATA: {{ aeropuerto.siglas }}</p>
+        <p class="airport-description">
+          Ubicado en {{ aeropuerto.ciudad }} ({{ aeropuerto.pais.nombre }})
+        </p>
+      </div>
+
+      <div class="airport-footer">
+        <span>Aerolíneas: {{ aeropuerto.aerolineas.count }}</span>
+        <a href="{% url 'detalle_aeropuerto' aeropuerto.id_aeropuerto %}">
+          Ver detalles
+        </a>
+      </div>
+
+    </div>
+
+  {% empty %}
+    <p>No se encontraron aeropuertos.</p>
+  {% endfor %}
+</div>
