@@ -4,5 +4,7 @@ services:
     env: python
     plan: free
     rootDirectory: E4a/proyectoVolare
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
     startCommand: gunicorn proyectoVolare.wsgi
