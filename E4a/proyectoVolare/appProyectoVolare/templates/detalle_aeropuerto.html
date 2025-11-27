@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}{{ aeropuerto.nombre }}{% endblock %}
 
 {% block content %}
@@ -9,10 +8,7 @@
   <div class="row mb-4">
     <!-- COLUMNA 1: Imagen del aeropuerto -->
     <div class="col-md-4 mb-4 text-center">
-      <img src="{% static 'fotos_aeropuertos/'|add:aeropuerto.foto %}" 
-           alt="{{ aeropuerto.nombre }}" 
-           class="img-fluid mb-4" 
-           style="max-width: 300px;">
+      <img src="{{ aeropuerto.foto.url }}" alt="{{ aeropuerto.nombre }}" class="img-fluid mb-4" style="max-width: 300px;">
       <p><strong>País:</strong> {{ aeropuerto.pais.nombre }}</p>
     </div>
 

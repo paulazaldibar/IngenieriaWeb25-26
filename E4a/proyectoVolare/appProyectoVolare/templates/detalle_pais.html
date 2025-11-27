@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}{{ pais.nombre }}{% endblock %}
 
 {% block content %}
@@ -11,7 +10,7 @@
     
     <!-- COLUMNA 1: Bandera -->
     <div class="col-md-4 mb-4 text-center">
-      <img src="{% static 'banderas_paises/'|add:pais.bandera %}" 
+      <img src="{{ pais.bandera.url }}" 
            alt="bandera de {{ pais.nombre }}" 
            class="img-fluid mb-3"
            style="max-width: 250px;">
