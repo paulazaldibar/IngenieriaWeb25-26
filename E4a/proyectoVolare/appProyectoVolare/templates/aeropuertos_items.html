@@ -1,6 +1,3 @@
-<!-- CLASE CREADA UNICAMENTE PARA SEPARAR CLASE AEROPUERTO CON ITEM DENTRO DE ELLA, 
- ESTA CREADA UNICAMENTE PARA ITERACCION DE JAVA SCRIPT (BUSCADOR/EVENTO DE AEROPUERTOS)-->
-
 {% load static %}
 <div class="airport-grid">
   {% for aeropuerto in aeropuertos %}
@@ -8,7 +5,7 @@
     <div class="airport-card">
 
       {% if aeropuerto.foto %}
-      <img src="{{ aeropuerto.foto.url }}" 
+      <img src="{% static 'fotos_aeropuertos/' %}{{ aeropuerto.foto }}" 
            alt="{{ aeropuerto.nombre }}" 
            class="airport-image">
       {% else %}

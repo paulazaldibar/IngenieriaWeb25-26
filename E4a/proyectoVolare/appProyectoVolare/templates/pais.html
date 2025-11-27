@@ -24,7 +24,7 @@
 
         <!-- Imagen corregida -->
         {% if pais.bandera %}
-          <img src="{{ pais.bandera.url }}" 
+          <img src="{% static 'banderas_paises/'|add:pais.bandera %}" 
                alt="{{ pais.nombre }}" 
                class="country-image">
         {% else %}

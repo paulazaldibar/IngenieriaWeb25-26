@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ aerolinea.nombre }}{% endblock %}
 
 {% block content %}
@@ -8,7 +9,10 @@
   <div class="row mb-4">
     <!-- COLUMNA 1: Logo y país -->
     <div class="col-md-4 mb-4 text-center">
-      <img src="{{ aerolinea.logo.url }}" alt="{{ aerolinea.nombre }}" class="img-fluid mb-4" style="max-width: 300px;">
+      <img src="{% static 'logos_aerolineas/'|add:aerolinea.logo %}" 
+           alt="{{ aerolinea.nombre }}" 
+           class="img-fluid mb-4" 
+           style="max-width: 300px;">
       <p><strong>País:</strong> {{ aerolinea.pais_origen.nombre }}</p>
       <p><strong>Descripción:</strong> {{ aerolinea.descripcion }}</p>
     </div>
@@ -22,10 +26,4 @@
         {% empty %}
           <p>No hay aeropuertos asociados a esta aerolínea.</p>
         {% endfor %}
-      </ul>
-    </div>
-  </div>
-
-  <a href="{% url 'lista_aerolineas' %}" class="btn btn-primary mt-5">Volver a Aerolíneas</a>
-</div>
-{% endblock %}
+      </

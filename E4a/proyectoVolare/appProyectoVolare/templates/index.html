@@ -19,7 +19,9 @@
       <div class="index-row">
         {% if item.aerolinea.logo %}
           <div class="index-image-container">
-            <img src="{{ item.aerolinea.logo.url }}" alt="{{ item.aerolinea.nombre }}" class="index-image">
+            <img src="{% static 'logos_aerolineas/'|add:item.aerolinea.logo %}" 
+                 alt="{{ item.aerolinea.nombre }}" 
+                 class="index-image">
           </div>
         {% endif %}
         <div class="index-info">

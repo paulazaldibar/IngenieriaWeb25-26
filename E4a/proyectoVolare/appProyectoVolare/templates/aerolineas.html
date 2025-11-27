@@ -20,7 +20,7 @@
     {% for aerolinea in aerolineas %}
       <div class="airline-card">
 
-        <img src="{{ aerolinea.logo.url }}" 
+        <img src="{% static 'logos_aerolineas/' %}{{ aerolinea.logo }}" 
              alt="{{ aerolinea.nombre }}" 
              class="airline-logo">
 
