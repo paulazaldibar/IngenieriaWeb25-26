@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: mi-proyecto-django
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn proyectoVolare.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: False
