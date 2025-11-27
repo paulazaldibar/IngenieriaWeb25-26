@@ -1,0 +1,205 @@
+/** 
+ * Holiday Template
+ * http://www.templatemo.com/tm-475-holiday
+ *
+ * COLOR CODES
+ * Yellow	#FCDD44
+ *
+ */
+
+/* CSS Resets */ 
+ul,p {
+	margin: 0; 
+	padding: 0;
+}
+h1,h2,h3 {
+	margin: 0;
+	padding: 0;
+}
+h1,h2,h3,a,p { font-family: 'Open Sans', sans-serif; }
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+/* Header & Nav */
+body { overflow-x: hidden; }
+.tm-header {
+	background: #000000;
+	height: 80px;
+	position: relative;
+	z-index: 100;
+}
+.tm-site-name-container { padding-top: 20px; }
+.tm-site-name {
+	color: #FCDD44;
+	font-size: 27px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.tm-site-name:hover,
+.tm-site-name:focus {
+	color: #FF720B;
+}
+.mobile-menu-icon { display: none; }
+.tm-nav {
+	display: block;
+	overflow: hidden;
+}
+.tm-nav li {
+	list-style: none;
+	float: left;
+}
+.tm-nav li a {
+	color: #838383;
+	display: block;
+	padding: 45px 34px 15px 34px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+}
+.tm-nav li a.active,
+.tm-nav li a:focus,
+.tm-nav li a:hover {
+	background: #FCDD44;
+	color: #000;
+}
+/* Footer */
+.tm-black-bg {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+.tm-black-bg p {
+  margin: 0;
+}
+
+/* Banner */
+.tm-banner-inner {
+    height: auto;
+    margin: auto;
+    position: absolute;
+    top: -20px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.tm-banner-title,
+.tm-banner-subtitle,
+.tm-banner-link {
+	text-transform: uppercase;
+}
+.tm-banner-title,
+.tm-banner-subtitle {
+	color: white;
+}
+.tm-banner-title {	
+	font-size: 74px;
+	font-weight: 600;
+}
+.tm-banner-subtitle { font-size: 34px; }
+.tm-yellow-text { color: #FCDD44; }
+.tm-banner-link {
+	background: rgba(252, 221, 68, 0.39) none repeat scroll 0% 0%;
+	border: 1px solid #D2B731;
+	color: #FFF;
+	font-weight: 600;
+	display: inline-block;
+	padding: 18px 40px;
+	margin-top: 30px;
+	transition: all 0.3s ease;
+}
+.tm-banner-link:hover,
+.tm-banner-link:focus {
+	background: rgba(252, 221, 68, 1);
+	color: #000;
+}
+.flexslider.flexslider-banner {
+	max-width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+.flexslider.flexslider-banner .slides > li {
+	text-align: center;
+}
+.flexslider.flexslider-banner .flex-direction-nav a:before {
+	color: #FCDD44;
+}
+.flex-direction-nav a {
+	height: 50px;
+}
+
+/* Section 1, index.html */
+.tm-gray-bg { background-color: #E5E5E5; }
+.tm-home-section-1 {
+	position: relative;
+	top: -50px;
+}
+.form-control {	border-radius: 0; }
+.form-control:focus {
+	border-color: #FCDD44;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(252, 221, 68, 0.6);
+}
+.tm-yellow-gradient-bg {
+	background: #f5d11d;
+	background: linear-gradient(to bottom,  #f5d11d 0%,#f3d10e 1%,#efcf1c 2%,#fccd0d 4%,#f7ca0d 5%,#f9cb1e 6%,#f7cb10 7%,#f8cc14 8%,#f0c40c 54%,#edc50c 55%,#e9c108 71%,#ecc008 78%,#e6be06 91%,#e9bd06 93%,#e8bc06 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5d11d', endColorstr='#e8bc06',GradientType=0 );
+}
+.tm-green-gradient-bg {
+	background: #2ec66b;
+	background: linear-gradient(to bottom,  #2ec66b 0%,#2dc970 1%,2ac96c 2%,#2bc76e 4%,#2bc869 5%,#2ac871 6%,#29c86c 7%,#28c76b 15%,#2bc76c 16%,#21bb61 73%,#1eb860 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ec66b', endColorstr='#1eb860',GradientType=0 );
+}
+.tm-red-gradient-bg {
+	background: #e97262;
+	background: linear-gradient(to bottom,  #e97262 0%,#ef6865 1%,#ed6c5f 2%,#f07162 4%,#f17062 5%,#eb6f67 6%,#ec6c5f 7%,#ec6b5e 18%,#eb5d4f 56%,#e95242 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e97262', endColorstr='#e95242',GradientType=0 );
+}
+.tm-yellow-gradient-bg,
+.tm-green-gradient-bg,
+.tm-red-gradient-bg {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	height: 88px;
+}
+
+/* Resto de tu CSS sin cambios… */
+
+/* ===========================
+   Ajuste del menú para Contacto
+   =========================== */
+.tm-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap; /* evita que los ítems bajen de línea */
+}
+
+.tm-nav ul li {
+    display: inline-block; /* pone todos los ítems en línea */
+    margin-right: 20px;    /* separación entre ítems */
+}
+
+.tm-nav ul li a {
+    padding: 45px 34px 15px 34px; /* mantiene la altura del header */
+}
+
+.tm-nav ul li a.active {
+    color: #004aad; /* color opcional para el activo */
+}

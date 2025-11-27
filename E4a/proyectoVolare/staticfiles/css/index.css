@@ -1,0 +1,88 @@
+.titulo-portada {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.subtitulo-portada {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+.seccion-titulo {
+  text-align: center;
+  margin: 40px 0 30px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+/*Estilo principal en filas */
+.index-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/*Cada fila ocupa el ancho completo */
+.index-row {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 15px 25px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.index-row:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/*Imagen (logo) */
+.index-image-container {
+  flex: 0 0 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-image {
+  width: 160px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/*Información de la aerolínea */
+.index-info {
+  flex: 1;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.index-nombre {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.index-pais {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/*Botón elegante */
+.index-btn {
+  background-color: #004aad;
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.index-btn:hover {
+  background-color: #00347a;
+}

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: proyecto-volare
+    env: python
+    plan: free
+    rootDirectory: E4a/proyectoVolare
+    workingDirectory: E4a/proyectoVolare
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn proyectoVolare.wsgi
