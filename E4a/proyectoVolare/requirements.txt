@@ -11,3 +11,4 @@ tzdata==2024.2
 virtualenv==20.26.6
 virtualenvwrapper-win==1.2.7
 gunicorn
+whitenoise==7.1.0
