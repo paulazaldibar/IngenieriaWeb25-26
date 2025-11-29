@@ -12,9 +12,7 @@ admin.site.site_title = "Administrador Volare"
 admin.site.index_title = "Bienvenido al panel de gestión de Volare"
 
 
-
-
-# ----------- PALETA DE COLORES POR PAÍS ------------
+# Colores por cada país
 PAIS_COLORES = {
     'España': '#DC143C',
     'Italia': '#4dc493',
@@ -28,7 +26,7 @@ PAIS_COLORES = {
     'Suiza': "#E881B5FF",               
 }
 
-# ----------- AEROLINEAS -----------------------------
+# AEROLINEAS
 admin.site.unregister(Aerolinea) # quitamos el modelo que ya estaba registrado
 @admin.register(Aerolinea) # registramos de nuevo con la configuración personalizada
 class AerolineaAdmin(admin.ModelAdmin):
@@ -37,7 +35,7 @@ class AerolineaAdmin(admin.ModelAdmin):
     list_filter = ('pais_origen',)
     ordering = ['nombre']
     list_per_page = 10
-    exclude = ('siglas',)   # igual que el año pasado: ejemplo de exclusión
+    exclude = ('siglas',)
 
     def nombre_color(self, obj):
         color = PAIS_COLORES.get(obj.pais_origen.nombre, '#000000')
@@ -45,7 +43,7 @@ class AerolineaAdmin(admin.ModelAdmin):
     nombre_color.short_description = 'Nombre (color)'
 
 
-# ----------- PAISES ---------------------------------
+# PAISES
 admin.site.unregister(Pais)
 @admin.register(Pais)
 class PaisAdmin(admin.ModelAdmin):
@@ -56,7 +54,7 @@ class PaisAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
-# ----------- AEROPUERTOS -----------------------------
+# AEROPUERTOS
 admin.site.unregister(Aeropuerto)
 @admin.register(Aeropuerto)
 class AeropuertoAdmin(admin.ModelAdmin):
