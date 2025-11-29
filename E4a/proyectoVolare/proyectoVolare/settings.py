@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appProyectoVolare',
+    'colorfield',
+    'admin_interface',
 ]
 
 MIDDLEWARE = [
