@@ -9,7 +9,16 @@
     <!-- COLUMNA 1: Logo y país -->
     <div class="col-md-4 mb-4 text-center">
       <img src="{{ aerolinea.logo.url }}" alt="{{ aerolinea.nombre }}" class="img-fluid mb-4" style="max-width: 300px;">
-      <p><strong>País:</strong> {{ aerolinea.pais_origen.nombre }}</p>
+      <p><strong>País:</strong> 
+        {% if aerolinea.pais_origen %}
+          <a href="{% url 'detalle_pais' pais_id=aerolinea.pais_origen.id_pais %}">
+           {{ aerolinea.pais_origen.nombre }}
+          </a>
+        {% else %}
+          (No asignado)
+        {% endif %}
+      </p>
+
       <p><strong>Descripción:</strong> {{ aerolinea.descripcion }}</p>
     </div>
 
@@ -18,7 +27,11 @@
       <h4>Aeropuertos asociados:</h4>
       <ul class="list-group">
         {% for aeropuerto in aerolinea.aeropuerto_set.all %}
-          <li class="list-group-item">{{ aeropuerto.nombre }} ({{ aeropuerto.ciudad }})</li>
+          <li class="list-group-item">
+            <a href="{% url 'detalle_aeropuerto' aeropuerto_id=aeropuerto.id_aeropuerto %}">
+              {{ aeropuerto.nombre }} ({{ aeropuerto.ciudad }})
+            </a>
+          </li>
         {% empty %}
           <p>No hay aeropuertos asociados a esta aerolínea.</p>
         {% endfor %}
