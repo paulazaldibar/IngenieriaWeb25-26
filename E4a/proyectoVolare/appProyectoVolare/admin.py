@@ -1,3 +1,5 @@
+
+
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Aerolinea, Pais, Aeropuerto
@@ -26,6 +28,8 @@ PAIS_COLORES = {
     'Suiza': "#E881B5FF",               
 }
 
+
+
 # AEROLINEAS
 admin.site.unregister(Aerolinea) # quitamos el modelo que ya estaba registrado
 @admin.register(Aerolinea) # registramos de nuevo con la configuración personalizada
@@ -53,6 +57,16 @@ class PaisAdmin(admin.ModelAdmin):
     list_filter = ('nombre',)
     list_per_page = 10
 
+    def nombre_color(self, obj): 
+        color = PAIS_COLORES.get(obj.nombre, '#000000')
+        return format_html(f'<span style="color:{color}; font-weight:600;">{obj.nombre}</span>')
+
+    
+#    def nombre_color(self, obj):
+#        color = PAIS_COLORES.get(obj.pais_origen.nombre, '#000000')
+#        return format_html(f'<span style="color:{color};">{obj.nombre}</span>')
+#    nombre_color.short_description = 'Nombre (color)'
+
 
 # AEROPUERTOS
 admin.site.unregister(Aeropuerto)
@@ -64,4 +78,8 @@ class AeropuertoAdmin(admin.ModelAdmin):
     ordering = ['nombre']
     list_per_page = 10
 
+    def nombre_color(self, obj):
+        color = PAIS_COLORES.get(obj.pais_origen.nombre, '#000000')
+        return format_html(f'<span style="color:{color};">{obj.nombre}</span>')
+    nombre_color.short_description = 'Nombre (color)'
 
