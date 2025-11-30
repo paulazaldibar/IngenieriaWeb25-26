@@ -9,7 +9,15 @@
     <!-- COLUMNA 1: Imagen del aeropuerto -->
     <div class="col-md-4 mb-4 text-center">
       <img src="{{ aeropuerto.foto.url }}" alt="{{ aeropuerto.nombre }}" class="img-fluid mb-4" style="max-width: 300px;">
-      <p><strong>País:</strong> {{ aeropuerto.pais.nombre }}</p>
+      <p><strong>País:</strong>
+        {% if aeropuerto.pais %}
+          <a href="{% url 'detalle_pais' pais_id=aeropuerto.pais.id_pais %}">
+            {{ aeropuerto.pais.nombre }}
+          </a>
+        {% else %}
+          (No asignado)
+        {% endif %}
+      </p>
     </div>
 
     <!-- COLUMNA 2: Aerolíneas -->
@@ -18,8 +26,10 @@
       <ul class="list-group">
         {% for aerolinea in aeropuerto.aerolineas.all %}
           <li class="list-group-item">
-            <a href="{% url 'detalle_aerolinea' aerolinea.id_aerolinea %}">{{ aerolinea.nombre }}</a>
-          </li>
+            <a href="{% url 'detalle_aerolinea' aerolinea_id=aerolinea.id_aerolinea %}">
+              {{ aerolinea.nombre }}
+            </a>
+          </li>        
         {% empty %}
           <p>No hay aerolíneas registradas en este aeropuerto.</p>
         {% endfor %}
