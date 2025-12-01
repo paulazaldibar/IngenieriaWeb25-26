@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
@@ -50,9 +50,12 @@ class IndexView(TemplateView):
 # AEROLÍNEAS
 # -----------------------------
 class AerolineaListView(ListView):
-    model = Aerolinea
     template_name = 'aerolineas.html'
     context_object_name = 'aerolineas'
+
+    def get_queryset(self):
+        return get_list_or_404(Aerolinea)
+
 
 class AerolineaDetailView(DetailView):
     model = Aerolinea
@@ -65,9 +68,11 @@ class AerolineaDetailView(DetailView):
 # PAÍSES
 # -----------------------------
 class PaisListView(ListView):
-    model = Pais
     template_name = 'pais.html'
     context_object_name = 'paises'
+
+    def get_queryset(self):
+        return get_list_or_404(Pais)
 
 class PaisDetailView(DetailView):
     model = Pais
@@ -93,9 +98,12 @@ class PaisDetailView(DetailView):
 # AEROPUERTOS
 # -----------------------------
 class AeropuertoListView(ListView):
-    model = Aeropuerto
     template_name = 'aeropuertos.html'
     context_object_name = 'aeropuertos'
+
+    def get_queryset(self):
+        return get_list_or_404(Aeropuerto)
+
 
 class AeropuertoDetailView(DetailView):
     model = Aeropuerto
