@@ -1,0 +1,9 @@
+/* BANDERA DEL PAÍS */
+.pais-bandera {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

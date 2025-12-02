@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ aerolinea.nombre }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detalle_aerolinea.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container detalle-pais mt-5">
+<div class="container detalle-aerolinea mt-5">
   <h2>{{ aerolinea.nombre }}</h2>
 
   <div class="row mb-4">
-    <!-- COLUMNA 1: Logo y país -->
     <div class="col-md-4 mb-4 text-center">
-      <img src="{{ aerolinea.logo.url }}" alt="{{ aerolinea.nombre }}" class="img-fluid mb-4" style="max-width: 300px;">
+      <img src="{{ aerolinea.logo.url }}" 
+           alt="{{ aerolinea.nombre }}" 
+           class="aerolinea-logo img-fluid mb-4">
       <p><strong>País:</strong> 
         {% if aerolinea.pais_origen %}
           <a href="{% url 'detalle_pais' pais_id=aerolinea.pais_origen.id_pais %}">
@@ -22,7 +28,6 @@
       <p><strong>Descripción:</strong> {{ aerolinea.descripcion }}</p>
     </div>
 
-    <!-- COLUMNA 2: Aeropuertos asociados -->
     <div class="col-md-8 mb-4">
       <h4>Aeropuertos asociados:</h4>
       <ul class="list-group">
@@ -33,7 +38,7 @@
             </a>
           </li>
         {% empty %}
-          <p>No hay aeropuertos asociados a esta aerolínea.</p>
+          <li class="list-group-item">No hay aeropuertos asociados a esta aerolínea.</li>
         {% endfor %}
       </ul>
     </div>

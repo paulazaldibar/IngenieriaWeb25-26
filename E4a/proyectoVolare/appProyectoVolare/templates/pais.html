@@ -16,13 +16,12 @@
     </div>
   </div>
 
-  <!-- ✅ Grid -->
+  <!-- Grid de países -->
   <div class="country-grid">
-
     {% for pais in paises %}
       <div class="country-card">
 
-        <!-- Imagen corregida -->
+        <!-- Imagen -->
         {% if pais.bandera %}
           <img src="{{ pais.bandera.url }}" 
                alt="{{ pais.nombre }}" 
@@ -33,10 +32,9 @@
                class="country-image">
         {% endif %}
 
-        <!-- Info -->
+        <!-- Información -->
         <div class="country-info">
-          <p class="text-uppercase margin-bottom-20">{{ pais.nombre }}</p>
-        
+          <p class="country-name">{{ pais.nombre }}</p>
           <p class="country-description">
             {{ pais.curiosidad|default:"Sin curiosidad disponible" }}
           </p>
@@ -50,7 +48,6 @@
 
       </div>
     {% endfor %}
-
   </div>
 
 </section>

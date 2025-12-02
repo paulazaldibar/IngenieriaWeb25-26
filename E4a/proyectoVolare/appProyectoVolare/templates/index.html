@@ -3,9 +3,11 @@
 
 {% block title %}Inicio{% endblock %}
 
-{% block content %}
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
+{% block content %}
 <section class="container text-center mt-5">
   <h1 class="titulo-portada">Bienvenido a Volare</h1>
   <p class="subtitulo-portada">Explora las principales aerolíneas del mundo, agrupadas por país.</p>
