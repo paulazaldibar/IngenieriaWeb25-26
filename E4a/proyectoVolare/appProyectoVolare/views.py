@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, TemplateView
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
@@ -127,3 +127,55 @@ class ContactoView(FormView):
 
 class ContactoOKView(TemplateView):
     template_name = 'contact_ok.html'
+
+
+
+def api_aerolineas(request):
+    datos = list(Aerolinea.objects.values())
+    return JsonResponse(datos, safe=False)
+
+
+def api_aerolinea_detalle(request, aerolinea_id):
+    aerolinea = get_object_or_404(Aerolinea, pk=aerolinea_id)
+    data = {
+        "id": aerolinea.id_aerolinea,
+        "nombre": aerolinea.nombre,
+        "siglas": aerolinea.siglas,
+        "descripcion": aerolinea.descripcion,
+        "pais_origen": aerolinea.pais_origen.nombre if aerolinea.pais_origen else None,
+        "logo": aerolinea.logo.url if aerolinea.logo else None,
+    }
+    return JsonResponse(data)
+
+
+def api_paises(request):
+    datos = list(Pais.objects.values())
+    return JsonResponse(datos, safe=False)
+
+
+def api_pais_detalle(request, pais_id):
+    pais = get_object_or_404(Pais, pk=pais_id)
+    data = {
+        "id": pais.id_pais,
+        "nombre": pais.nombre,
+        "curiosidad": pais.curiosidad,
+        "bandera": pais.bandera.url if pais.bandera else None,
+    }
+    return JsonResponse(data)
+
+
+def api_aeropuertos(request):
+    datos = list(Aeropuerto.objects.values())
+    return JsonResponse(datos, safe=False)
+
+
+def api_aeropuerto_detalle(request, aeropuerto_id):
+    aeropuerto = get_object_or_404(Aeropuerto, pk=aeropuerto_id)
+    data = {
+        "id": aeropuerto.id_aeropuerto,
+        "nombre": aeropuerto.nombre,
+        "siglas": aeropuerto.siglas,
+        "pais": aeropuerto.pais.nombre,
+        "foto": aeropuerto.foto.url if aeropuerto.foto else None,
+    }
+    return JsonResponse(data)

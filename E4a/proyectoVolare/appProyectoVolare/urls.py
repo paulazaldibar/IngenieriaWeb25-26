@@ -8,6 +8,7 @@ from .views import (
     AeropuertoListView, AeropuertoDetailView,
     buscar_aeropuertos
 )
+from . import views
 
 
 urlpatterns = [
@@ -26,4 +27,13 @@ urlpatterns = [
 
     path('contacto/', ContactoView.as_view(), name='contacto'),
     path('contacto/ok/', ContactoOKView.as_view(), name='contacto_ok'),
+    
+    path('api/aerolineas/', views.api_aerolineas, name='api_aerolineas'),
+    path('api/aerolineas/<int:aerolinea_id>/', views.api_aerolinea_detalle, name='api_aerolinea_detalle'),
+
+    path('api/paises/', views.api_paises, name='api_paises'),
+    path('api/paises/<int:pais_id>/', views.api_pais_detalle, name='api_pais_detalle'),
+
+    path('api/aeropuertos/', views.api_aeropuertos, name='api_aeropuertos'),
+    path('api/aeropuertos/<int:aeropuerto_id>/', views.api_aeropuerto_detalle, name='api_aeropuerto_detalle'),
 ]
