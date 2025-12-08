@@ -21,9 +21,15 @@ onMounted(async () => {
   <div>
     <h2>Listado de Aerolíneas (API Django)</h2>
     <p v-if="cargando">Cargando...</p>
+
     <ul v-else>
-      <li v-for="aero in aerolineas" :key="aero.id_aerolinea">
-        {{ aero.nombre }} ({{ aero.siglas }})
+      <li
+        v-for="aero in aerolineas"
+        :key="aero.id_aerolinea"
+      >
+        <router-link :to="`/aerolineas/${aero.id_aerolinea}`">
+          {{ aero.nombre }} ({{ aero.siglas }})
+        </router-link>
       </li>
     </ul>
   </div>
