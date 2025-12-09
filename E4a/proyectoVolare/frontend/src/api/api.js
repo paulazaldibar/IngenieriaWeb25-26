@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api";
+const API_URL = "https://ingenieriaweb25-26-z76m.onrender.com";
 
 export function getAerolineas() {
   return axios.get(`${API_URL}/aerolineas/`);
