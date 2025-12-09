@@ -1,7 +1,9 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import { getPais } from "../api/api.js";
+import ShareButtons from "./ShareButtons.vue";
+import JsonLd from "./JsonLd.vue";
 
 const route = useRoute();
 const pais = ref(null);
@@ -18,21 +20,58 @@ onMounted(async () => {
     cargando.value = false;
   }
 });
+
+// URL actual para compartir
+const currentUrl = computed(() => window.location.href);
+
+// JSON-LD dinámico
+const jsonLd = computed(() => {
+  if (!pais.value) return {};
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Country",
+    "name": pais.value.nombre,
+    "description": pais.value.curiosidad,
+    "image": pais.value.bandera || undefined,
+  };
+});
 </script>
 
 <template>
   <div>
     <p v-if="cargando">Cargando país...</p>
 
-    <div v-else-if="pais">
-      <h2>País: {{ pais.nombre }}</h2>
+    <article
+      v-else-if="pais"
+      itemscope
+      itemtype="https://schema.org/Country"
+    >
+      <h2 itemprop="name">País: {{ pais.nombre }}</h2>
 
-      <p><strong>Curiosidad:</strong> {{ pais.curiosidad }}</p>
+      <p>
+        <strong>Curiosidad:</strong>
+        <span itemprop="description">{{ pais.curiosidad }}</span>
+      </p>
 
       <div v-if="pais.bandera">
-        <img :src="pais.bandera" alt="Bandera" style="max-width: 200px; margin-top: 10px" />
+        <img
+          :src="pais.bandera"
+          alt="Bandera"
+          itemprop="image"
+          style="max-width: 200px; margin-top: 10px"
+        />
       </div>
-    </div>
+
+      <!-- Botones sociales -->
+      <ShareButtons
+        :url="currentUrl"
+        :texto="`Mira este país: ${pais.nombre}`"
+      />
+
+      <!-- JSON-LD dinámico -->
+      <JsonLd :json="jsonLd" />
+    </article>
 
     <p v-else>No se encontró el país.</p>
   </div>
