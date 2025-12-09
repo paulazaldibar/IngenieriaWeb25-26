@@ -24,3 +24,4 @@ uvicorn==0.38.0
 virtualenv==20.26.6
 virtualenvwrapper-win==1.2.7
 whitenoise==6.11.0
+django-cors-headers
